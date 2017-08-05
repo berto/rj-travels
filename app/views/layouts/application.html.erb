@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RjTravels</title>
+    <%= csrf_meta_tags %>
+
+    <%= favicon_link_tag 'icon.png' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+      <!-- Main -->
+      <div id="main">
+        <div class="inner">
+
+          <!-- Header -->
+          <header id="header">
+            <a href="/" class="logo"><strong>Rj</strong>Travels</a>
+            <ul class="icons">
+              <li><a href="https://www.facebook.com/rjortega" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+              <li><a href="https://www.instagram.com/ricardo_ortega/" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+              <li><a href="mailto:rikrdo.ortega@gmail.com" class="icon fa-envelope-o"><span class="label">Envelope</span></a></li>
+            </ul>
+          </header>
+          <%= yield %>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div id="sidebar">
+        <div class="inner">
+
+          <!-- Search -->
+          <%# <section id="search" class="alt"> %>
+            <%#   <form method="post" action="#"> %>
+              <%#     <input type="text" name="query" id="query" placeholder="Search" /> %>
+              <%#   </form> %>
+            <%# </section> %>
+
+          <!-- Menu -->
+          <nav id="menu">
+            <header class="major">
+              <h2>Menu</h2>
+            </header>
+            <ul>
+              <li><a href="/">Homepage</a></li>
+              <li><a href="/blogs">Blog Entries</a></li>
+              <li><a href="/about">About Me</a></li>
+              <li>
+                <span class="opener">Gallery</span>
+                <ul>
+                  <li><a href="#">Colombia</a></li>
+                  <li><a href="#">Ecuador</a></li>
+                  <li><a href="#">Peru</a></li>
+                </ul>
+              </li>
+              <li><a href="/map">Map</a></li>
+              <li id="contact"><a href="">Contact</a></li>
+            </ul>
+          </nav>
+
+          <!-- Section -->
+          <section>
+            <header class="major">
+              <h2>Recent Posts</h2>
+            </header>
+            <div class="mini-posts">
+              <article>
+                <a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
+                <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
+              </article>
+              <article>
+                <a href="#" class="image"><img src="images/pic08.jpg" alt="" /></a>
+                <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
+              </article>
+              <article>
+                <a href="#" class="image"><img src="images/pic09.jpg" alt="" /></a>
+                <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
+              </article>
+            </div>
+            <ul class="actions">
+              <li><a href="/blogs" class="button">More</a></li>
+            </ul>
+          </section>
+
+          <!-- Section -->
+          <section>
+            <header class="major">
+              <h2>Get in touch</h2>
+            </header>
+            <p>I do my best to reply to comments on the website and social media but email is always the best way to reach me .</p>
+            <ul class="contact">
+              <li class="fa-envelope-o"><a href="#">rikrdo.ortega@gmail.com</a></li>
+              <li class="fa-phone">970-371-3862 (N/A if traveling)</li>
+              <li class="fa-home">Lakewood, CO</li>
+            </ul>
+            <hr>
+            <p> In case of emergency contact: </p>
+            <h4> Edith Rincon </h4>
+            <ul class="contact">
+              <li class="fa-envelope-o"><a href="#">edith.rincon@yahoo.com</a></li>
+            </ul>
+          </section>
+
+          <!-- Footer -->
+          <footer id="footer">
+            <p class="copyright">&copy; <a href="https://github.com/berto">berto</a>. All rights reserved. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+          </footer>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
