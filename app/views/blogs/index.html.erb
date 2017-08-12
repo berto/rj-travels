@@ -1,37 +1,18 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Blogs</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Article</th>
-      <th>Title</th>
-      <th>Image</th>
-      <th>Date</th>
-      <th>Lat</th>
-      <th>Lng</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<!-- Banner -->
+  <header class="major">
+    <a href="/blogs"><h2>Blog Posts</h2></a>
+  </header>
+  <div class="posts">
     <% @blogs.each do |blog| %>
-      <tr>
-        <td><%= blog.article %></td>
-        <td><%= blog.title %></td>
-        <td><%= blog.image_id %></td>
-        <td><%= blog.date %></td>
-        <td><%= blog.lat %></td>
-        <td><%= blog.lng %></td>
-        <td><%= link_to 'Show', blog %></td>
-        <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
-        <td><%= button_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Blog', new_blog_path %>
+      <article>
+        <%# <%= image_tag "cover.jpg" %>
+        <h3><%= blog.title %></h3>
+        <h6><%= blog.date.strftime("%m/%d") %></h6>
+        <p><%= blog.article.first(400) + '...' %></p>
+        <ul class="actions">
+          <li> <td><%= link_to '<button> More </button>'.html_safe, blog %></td> </li>
+        </ul>
+      </article>
+    <%end %>
+  </div>
+</section>
