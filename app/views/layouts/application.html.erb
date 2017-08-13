@@ -73,7 +73,7 @@
                 <article>
                   <h3><%= blog.title%></h3>
                   <figure class="side-thumbnail">
-                    <%= image_tag blog.image ? blog.image : 'https://s3.amazonaws.com/colombia-rj-travels/default.jpg'%>
+                    <%= image_tag blog.image != nil && blog.image != '' ? blog.image : 'https://s3.amazonaws.com/colombia-rj-travels/default.jpg'%>
                   </figure>
                   <p><%= blog.article.first(200) + '...' %></p>
                   <ul class="actions">

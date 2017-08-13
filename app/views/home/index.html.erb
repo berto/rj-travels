@@ -61,7 +61,7 @@
     <% @blogs.each do |blog| %>
       <article>
         <figure class="thumbnail">
-          <%= image_tag blog.image ? blog.image : 'https://s3.amazonaws.com/colombia-rj-travels/default.jpg'%>
+          <%= image_tag blog.image != nil && blog.image != '' ? blog.image : 'https://s3.amazonaws.com/colombia-rj-travels/default.jpg'%>
         </figure>
         <h3><%= blog.title %></h3>
         <h6><%= blog.date.strftime("%m/%d") %></h6>
