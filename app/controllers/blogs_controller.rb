@@ -6,21 +6,27 @@ class BlogsController < ApplicationController
   # GET /blogs
   # GET /blogs.json
   def index
-    @blogs = Blog.all
+    @blogs = Blog.order('created_at').all
+    @preview = Blog.order('created_at DESC').limit(3).all
   end
 
   # GET /blogs/:name
   # GET /blogs/:name.json
   def show
+    @blogs = Blog.order('created_at').all
+    @preview = Blog.order('created_at DESC').limit(3).all
   end
 
   # GET /blogs/new
   def new
-    @blog = Blog.new
+    @blogs = Blog.order('created_at').all
+    @preview = Blog.order('created_at DESC').limit(3).all
   end
 
   # GET /blogs/:name/edit
   def edit
+    @blogs = Blog.order('created_at').all
+    @preview = Blog.order('created_at DESC').limit(3).all
   end
 
   # POST /blogs
@@ -75,6 +81,6 @@ class BlogsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def blog_params
-      params.require(:blog).permit(:article, :title, :name, :image_id, :date, :lat, :lng)
+      params.require(:blog).permit(:article, :title, :name, :image, :date, :lat, :lng)
     end
 end

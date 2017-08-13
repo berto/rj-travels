@@ -19,22 +19,12 @@ ActiveRecord::Schema.define(version: 20170805235930) do
     t.text "article", null: false
     t.text "title", null: false
     t.text "name", null: false
-    t.bigint "image_id"
+    t.text "image"
     t.date "date"
     t.float "lat"
     t.float "lng"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["image_id"], name: "index_blogs_on_image_id"
   end
 
-  create_table "images", force: :cascade do |t|
-    t.string "title"
-    t.string "link"
-    t.integer "country_code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_foreign_key "blogs", "images"
 end

@@ -58,53 +58,18 @@
     <a href="/blogs"><h2>Blog Posts</h2></a>
   </header>
   <div class="posts">
-    <article>
-      <a href="#" class="image"><img src="images/pic01.jpg" alt="" /></a>
-      <h3>Interdum aenean</h3>
-      <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-      <ul class="actions">
-        <li><a href="#" class="button">More</a></li>
-      </ul>
-    </article>
-    <article>
-      <a href="#" class="image"><img src="images/pic02.jpg" alt="" /></a>
-      <h3>Nulla amet dolore</h3>
-      <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-      <ul class="actions">
-        <li><a href="#" class="button">More</a></li>
-      </ul>
-    </article>
-    <article>
-      <a href="#" class="image"><img src="images/pic03.jpg" alt="" /></a>
-      <h3>Tempus ullamcorper</h3>
-      <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-      <ul class="actions">
-        <li><a href="#" class="button">More</a></li>
-      </ul>
-    </article>
-    <article>
-      <a href="#" class="image"><img src="images/pic04.jpg" alt="" /></a>
-      <h3>Sed etiam facilis</h3>
-      <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-      <ul class="actions">
-        <li><a href="#" class="button">More</a></li>
-      </ul>
-    </article>
-    <article>
-      <a href="#" class="image"><img src="images/pic05.jpg" alt="" /></a>
-      <h3>Feugiat lorem aenean</h3>
-      <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-      <ul class="actions">
-        <li><a href="#" class="button">More</a></li>
-      </ul>
-    </article>
-    <article>
-      <a href="#" class="image"><img src="images/pic06.jpg" alt="" /></a>
-      <h3>Amet varius aliquam</h3>
-      <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-      <ul class="actions">
-        <li><a href="#" class="button">More</a></li>
-      </ul>
-    </article>
+    <% @blogs.each do |blog| %>
+      <article>
+        <figure class="thumbnail">
+          <%= image_tag blog.image ? blog.image : 'https://s3.amazonaws.com/colombia-rj-travels/default.jpg'%>
+        </figure>
+        <h3><%= blog.title %></h3>
+        <h6><%= blog.date.strftime("%m/%d") %></h6>
+        <p><%= blog.article.first(400) + '...' %></p>
+        <ul class="actions">
+          <li> <td><%= link_to '<button> More </button>'.html_safe, blog %></td> </li>
+        </ul>
+      </article>
+    <%end %>
   </div>
 </section>
