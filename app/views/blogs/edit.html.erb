@@ -2,5 +2,6 @@
 
 <%= render 'form', blog: @blog %>
 
-<%= link_to 'Show', @blog %> |
-<%= link_to 'Back', blogs_path %>
+<%= button_to 'Destroy', @blog, method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to '<button>Show</button>'.html_safe, @blog %>
+<%= link_to '<button>Back</button>'.html_safe, blogs_path %>

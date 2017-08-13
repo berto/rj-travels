@@ -19,7 +19,7 @@ class BlogsController < ApplicationController
 
   # GET /blogs/new
   def new
-    @blogs = Blog.order('created_at').all
+    @blog = Blog.new
     @preview = Blog.order('created_at DESC').limit(3).all
   end
 

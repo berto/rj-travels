@@ -51,14 +51,14 @@
               <li><a href="/blogs">Blog Entries</a></li>
               <li><a href="/about">About Me</a></li>
               <li>
-                <span class="opener">Gallery</span>
+                <span class="opener">Gallery (Coming Soon)</span>
                 <ul>
                   <li><a href="#">Colombia</a></li>
                   <li><a href="#">Ecuador</a></li>
                   <li><a href="#">Peru</a></li>
                 </ul>
               </li>
-              <li><a href="/map">Map</a></li>
+              <li><a href="#">Map (Coming Soon)</a></li>
               <li id="contact"><a href="">Contact</a></li>
             </ul>
           </nav>
@@ -76,11 +76,14 @@
                     <%= image_tag blog.image ? blog.image : 'https://s3.amazonaws.com/colombia-rj-travels/default.jpg'%>
                   </figure>
                   <p><%= blog.article.first(200) + '...' %></p>
+                  <ul class="actions">
+                    <li> <td><%= link_to '<button> More </button>'.html_safe, blog %></td> </li>
+                  </ul>
                 </article>
               <%end %>
             </div>
             <ul class="actions">
-              <li><a href="/blogs" class="button">More</a></li>
+              <li><a href="/blogs" class="button">All Blogs</a></li>
             </ul>
           </section>
 
