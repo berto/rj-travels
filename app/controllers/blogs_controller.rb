@@ -1,6 +1,7 @@
 require 'facets/string/snakecase'
 
 class BlogsController < ApplicationController
+  before_action :authorize, except: [:index, :show]
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
 
   # GET /blogs
@@ -74,6 +75,13 @@ class BlogsController < ApplicationController
   end
 
   private
+    def authorize
+      if cookies.signed[:login].blank?
+        respond_to do |format|
+          format.html { redirect_to blogs_url, notice: 'Must be logged in.' }
+        end
+      end
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_blog
       @blog = Blog.find_by_name(params[:id])
