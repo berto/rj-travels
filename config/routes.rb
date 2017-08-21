@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/login', to: 'auth#login'
   post '/login', to: 'auth#create_session'
 
+  get '/feed' => 'blogs#feed'
   resources :blogs
   resources :images
 end

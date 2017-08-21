@@ -1,7 +1,7 @@
 require 'facets/string/snakecase'
 
 class BlogsController < ApplicationController
-  before_action :authorize, except: [:index, :show]
+  before_action :authorize, except: [:feed, :index, :show]
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
 
   # GET /blogs
@@ -71,6 +71,13 @@ class BlogsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to blogs_url, notice: 'Blog was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def feed
+    @blogs = Blog.order('created_at').all
+    respond_to do |format|
+      format.rss { render :layout => false }
     end
   end
 
