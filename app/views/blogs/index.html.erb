@@ -7,9 +7,11 @@
   <div class="posts">
     <% @blogs.each do |blog| %>
       <article>
-        <figure class="thumbnail">
-          <%= image_tag blog.image != nil && blog.image != '' ? blog.image : 'https://s3.amazonaws.com/colombia-rj-travels/default.jpg'%>
-        </figure>
+        <a href="/blogs/<%= blog.name %>">
+          <figure class="thumbnail">
+            <%= image_tag blog.image != nil && blog.image != '' ? blog.image : 'https://s3.amazonaws.com/colombia-rj-travels/default.jpg'%>
+          </figure>
+        </a>
         <h3><%= blog.title %></h3>
         <h6><%= blog.date.strftime("%m/%d") %></h6>
         <p><%= blog.article.first(400) + '...' %></p>

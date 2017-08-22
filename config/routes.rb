@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   get '/about', to: 'home#about'
   get '/map', to: 'home#map'
+  get '/gallery', to: 'home#gallery'
+  get '/gallery/:country', to: 'home#country'
 
   get '/logout', to: 'auth#logout'
   get '/login', to: 'auth#login'

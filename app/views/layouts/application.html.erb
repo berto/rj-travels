@@ -52,11 +52,11 @@
               <li><a href="/blogs">Blog Entries</a></li>
               <li><a href="/about">About Me</a></li>
               <li>
-                <span class="opener">Gallery (Coming Soon)</span>
+                <span class="opener">Gallery</span>
                 <ul>
-                  <li><a href="#">Colombia</a></li>
-                  <li><a href="#">Ecuador</a></li>
-                  <li><a href="#">Peru</a></li>
+                  <% @countries.each do |country| %>
+                    <li> <a href="/gallery/<%= country %>"><%= country.capitalize %> </a></li>
+                  <% end %>
                 </ul>
               </li>
               <li><a href="#">Map (Coming Soon)</a></li>

@@ -1,33 +1,31 @@
 require 'facets/string/snakecase'
+require 'aws-sdk'
 
 class BlogsController < ApplicationController
   before_action :authorize, except: [:feed, :index, :show]
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
+  before_action :set_preview, only: [:index, :show, :new, :edit]
 
   # GET /blogs
   # GET /blogs.json
   def index
     @blogs = Blog.order('created_at').all
-    @preview = Blog.order('created_at DESC').limit(3).all
   end
 
   # GET /blogs/:name
   # GET /blogs/:name.json
   def show
     @blogs = Blog.order('created_at').all
-    @preview = Blog.order('created_at DESC').limit(3).all
   end
 
   # GET /blogs/new
   def new
     @blog = Blog.new
-    @preview = Blog.order('created_at DESC').limit(3).all
   end
 
   # GET /blogs/:name/edit
   def edit
     @blogs = Blog.order('created_at').all
-    @preview = Blog.order('created_at DESC').limit(3).all
   end
 
   # POST /blogs
@@ -92,6 +90,19 @@ class BlogsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_blog
       @blog = Blog.find_by_name(params[:id])
+    end
+
+    def set_preview
+      @blog = Blog.find_by_name(params[:id])
+      @preview = Blog.order('created_at DESC').limit(3).all
+      Aws.config.update({
+        region: 'us-east-1',
+        credentials: Aws::Credentials.new(ENV['AWS_ID'], ENV['AWS_SECRET'])
+      })
+      s3 = Aws::S3::Client.new
+      resp = s3.list_buckets
+      resp.buckets.map { |bucket| puts bucket.inspect } 
+      @countries = resp.buckets.map { |bucket| bucket.name.split('-')[0] } 
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

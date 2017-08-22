@@ -1,0 +1,23 @@
+<!-- Content -->
+<section>
+  <span id="notice"><%= notice %></span>
+  <header class="major">
+    <a href="/gallery/"><h1>Photo Gallery</h1></a>
+    <a href="/gallery/<%= @country %>"><h2> <%= @country.capitalize %></h2></a>
+  </header>
+  <% if @pictures.empty? %>
+    <h2> No Pictures Yet! </h2>
+  <% else %>
+    <div class="posts countries">
+      <% @pictures.each do |picture| %>
+        <article>
+          <a href="<%= picture %>">
+            <figure class="thumbnail">
+              <%= image_tag picture%>
+            </figure>
+          </a>
+        </article>
+      <% end %>
+    </div>
+  <% end %>
+</section>

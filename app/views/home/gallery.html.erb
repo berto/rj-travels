@@ -1,0 +1,19 @@
+<!-- Content -->
+<section>
+  <span id="notice"><%= notice %></span>
+  <header class="major">
+    <a href="/gallery"><h1>Photo Gallery</h1></a>
+  </header>
+  <div class="posts countries">
+    <% @countries.each do |country| %>
+      <article>
+        <a href="/gallery/<%= country %>">
+          <figure class="thumbnail">
+            <%= image_tag 'countries/' + country + '.png'%>
+          </figure>
+        </a>
+        <h3><%= country.capitalize %></h3>
+      </article>
+    <%end %>
+  </div>
+</section>
