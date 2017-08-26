@@ -3,6 +3,7 @@ class AuthController < ApplicationController
   # GET /login
   def login
     @preview = Blog.order('created_at DESC').limit(3).all
+    @countries = []
   end
 
   # POST /login

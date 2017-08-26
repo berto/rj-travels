@@ -11,11 +11,12 @@
     <div class="posts countries">
       <% @pictures.each do |picture| %>
         <article>
-          <a href="<%= picture %>">
+          <a href="<%= picture[:link] %>">
             <figure class="thumbnail">
-              <%= image_tag picture%>
+              <%= image_tag picture[:link]%>
             </figure>
           </a>
+          <h3><%= picture[:name] %></h3>
         </article>
       <% end %>
     </div>

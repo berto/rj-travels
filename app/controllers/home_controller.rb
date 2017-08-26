@@ -19,8 +19,10 @@ class HomeController < ApplicationController
     resp = @s3.list_objects(bucket: bucket)
     @pictures = []
     resp.contents.each do |object|
-      if !object.key.ends_with? "/"
-        @pictures.push('https://s3.amazonaws.com/' + bucket + '/' + object.key)
+      if (!object.key.ends_with? "/") && (!object.key.downcase.include? "cover") && (!object.key.downcase.include? "default")
+        image_name = format_image_name(object.key)
+        picture = { :link => 'https://s3.amazonaws.com/' + bucket + '/' + object.key, :name => image_name }
+        @pictures.push(picture)
       end
     end
   end
@@ -39,5 +41,8 @@ class HomeController < ApplicationController
       resp = @s3.list_buckets
       resp.buckets.map { |bucket| puts bucket.inspect } 
       @countries = resp.buckets.map { |bucket| bucket.name.split('-')[0] } 
+    end
+    def format_image_name(name)
+      name.split('/')[-1].chomp('.jpg').chomp('.JPG')
     end
 end
