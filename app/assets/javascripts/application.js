@@ -16,5 +16,7 @@
 //= require cable.js
 //= require ie/html5shiv.js
 //= require ie/respond.min.js
-//= require main.js
 //= require custom.js
+//= require underscore
+//= require gmaps/google
+//= require main.js

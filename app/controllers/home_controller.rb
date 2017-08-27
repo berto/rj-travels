@@ -28,6 +28,13 @@ class HomeController < ApplicationController
   end
 
   def map
+    @blogs = Blog.all.where("lat is not null")
+    @blogs = Gmaps4rails.build_markers(@blogs) do |blog, marker|
+      marker.title blog.title
+      marker.infowindow format_window(blog)    
+      marker.lat blog.lat
+      marker.lng blog.lng
+    end
   end
 
   private
@@ -41,6 +48,23 @@ class HomeController < ApplicationController
       resp = @s3.list_buckets
       resp.buckets.map { |bucket| puts bucket.inspect } 
       @countries = resp.buckets.map { |bucket| bucket.name.split('-')[0] } 
+    end
+    def format_window(blog)
+      image = '' 
+      if (blog.image.empty?)
+        image = '<img src="' + blog.image + '">'
+      end
+      title = '<h2>' + blog.title + '</h2>'
+      preview = '<p>' + truncate(blog.article) + '</p>'
+      link = '<a href="/blogs/' + blog.name + '">More</a>'
+      title + image + preview + link
+    end
+    def truncate(s, length = 50, ellipsis = '...')
+      if s.length > length
+        s.to_s[0..length].gsub(/[^\w]\w+\s*$/, ellipsis)
+      else
+        s
+      end
     end
     def format_image_name(name)
       name.split('/')[-1].chomp('.jpg').chomp('.JPG')

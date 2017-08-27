@@ -1,0 +1,116 @@
+const mapStyle = [
+  {
+    "featureType": "landscape",
+    "stylers": [
+      {
+        "hue": "#FFBB00"
+      },
+      {
+        "saturation": 43.400000000000006
+      },
+      {
+        "lightness": 37.599999999999994
+      },
+      {
+        "gamma": 1
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway",
+    "stylers": [
+      {
+        "hue": "#FFC200"
+      },
+      {
+        "saturation": -61.8
+      },
+      {
+        "lightness": 45.599999999999994
+      },
+      {
+        "gamma": 1
+      }
+    ]
+  },
+  {
+    "featureType": "road.arterial",
+    "stylers": [
+      {
+        "hue": "#FF0300"
+      },
+      {
+        "saturation": -100
+      },
+      {
+        "lightness": 51.19999999999999
+      },
+      {
+        "gamma": 1
+      }
+    ]
+  },
+  {
+    "featureType": "road.local",
+    "stylers": [
+      {
+        "hue": "#FF0300"
+      },
+      {
+        "saturation": -100
+      },
+      {
+        "lightness": 52
+      },
+      {
+        "gamma": 1
+      }
+    ]
+  },
+  {
+    "featureType": "water",
+    "stylers": [
+      {
+        "hue": "#3581B8"
+      },
+      {
+        "saturation": -13.200000000000003
+      },
+      {
+        "lightness": 2.4000000000000057
+      },
+      {
+        "gamma": 1
+      }
+    ]
+  },
+  {
+    "featureType": "poi",
+    "stylers": [
+      {
+        "hue": "#00FF6A"
+      },
+      {
+        "saturation": -1.0989010989011234
+      },
+      {
+        "lightness": 11.200000000000017
+      },
+      {
+        "gamma": 1
+      }
+    ]
+  }
+]
+
+const handler = Gmaps.build('Google');
+handler.buildMap({ 
+    provider: {
+      zoom: 8,
+      center: new google.maps.LatLng(11.242210, -74.213301),
+      styles: mapStyle,
+    }, 
+    internal: {id: 'map'}
+  }, function(){
+    handler.fitMapToBounds();
+});

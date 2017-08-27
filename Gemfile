@@ -18,6 +18,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'redcarpet'
 gem 'therubyracer',  platforms: :ruby
 gem 'aws-sdk', '~> 2'
+gem 'underscore-rails'
+gem 'gmaps4rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
