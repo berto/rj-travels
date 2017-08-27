@@ -29,11 +29,11 @@ class HomeController < ApplicationController
 
   def map
     @blogs = Blog.all.where("lat is not null")
-    @blogs = Gmaps4rails.build_markers(@blogs) do |blog, marker|
-      marker.title blog.title
-      marker.infowindow format_window(blog)    
-      marker.lat blog.lat
-      marker.lng blog.lng
+    blog_markers = group_blogs(@blogs)
+    @blogs = Gmaps4rails.build_markers(blog_markers) do |blog, marker|
+      marker.infowindow format_window(blog[:posts])    
+      marker.lat blog[:lat]
+      marker.lng blog[:lng]
     end
   end
 
@@ -49,15 +49,38 @@ class HomeController < ApplicationController
       resp.buckets.map { |bucket| puts bucket.inspect } 
       @countries = resp.buckets.map { |bucket| bucket.name.split('-')[0] } 
     end
-    def format_window(blog)
-      image = '' 
-      if (!blog.image.empty?)
-        image = '<img src="' + blog.image + '">'
+    def group_blogs(blogs)
+      group = []
+      blogs.reverse.each do |blog|
+        @added = false
+        group.each do |marker|
+          if (marker[:lat] == blog[:lat]) && (marker[:lng] == blog[:lng])
+            marker[:posts].push(blog)
+            @added = true
+          end
+        end
+        if (!@added)
+          marker = {:posts => [], :lat => blog.lat, :lng => blog.lng}
+          marker[:posts].push(blog)
+          group.push(marker)
+        end
       end
-      title = '<h2>' + blog.title + '</h2>'
-      preview = '<p >' + truncate(blog.article) + '</p>'
-      link = '<a href="/blogs/' + blog.name + '"><button>More</button></a>'
-      '<div class="window">' + title + image + preview + link + '</div>'
+      group
+    end
+    def format_window(posts)
+      marker = '<div class="window">'
+      posts.each do |post|
+        image = '' 
+        if (!post.image.empty?)
+          image = '<img src="' + post.image + '">'
+        end
+        title = '<h2>' + post.title + '</h2>'
+        date = '<h6>' + post.date.strftime("%m/%d/%y") + '</h6>'
+        preview = '<p >' + truncate(post.article) + '</p>'
+        link = '<a href="/blogs/' + post.name + '"><button>More</button></a>'
+        marker += title + image + date + preview + link + '<hr>'
+      end
+      marker + '</div>'
     end
     def truncate(s, length = 100, ellipsis = '...')
       if s.length > length
