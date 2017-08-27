@@ -51,15 +51,15 @@ class HomeController < ApplicationController
     end
     def format_window(blog)
       image = '' 
-      if (blog.image.empty?)
+      if (!blog.image.empty?)
         image = '<img src="' + blog.image + '">'
       end
       title = '<h2>' + blog.title + '</h2>'
-      preview = '<p>' + truncate(blog.article) + '</p>'
-      link = '<a href="/blogs/' + blog.name + '">More</a>'
-      title + image + preview + link
+      preview = '<p >' + truncate(blog.article) + '</p>'
+      link = '<a href="/blogs/' + blog.name + '"><button>More</button></a>'
+      '<div class="window">' + title + image + preview + link + '</div>'
     end
-    def truncate(s, length = 50, ellipsis = '...')
+    def truncate(s, length = 100, ellipsis = '...')
       if s.length > length
         s.to_s[0..length].gsub(/[^\w]\w+\s*$/, ellipsis)
       else
