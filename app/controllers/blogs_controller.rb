@@ -32,7 +32,7 @@ class BlogsController < ApplicationController
   # POST /blogs.json
   def create
     blog = blog_params
-    blog["name"] = blog[:title].snakecase 
+    blog["name"] = blog[:title].gsub(".","").snakecase 
     @blog = Blog.new(blog)
 
     respond_to do |format|
@@ -51,7 +51,7 @@ class BlogsController < ApplicationController
   def update
     respond_to do |format|
       blog = blog_params
-      blog["name"] = blog[:title].snakecase 
+      blog["name"] = blog[:title].gsub(".","").snakecase 
       if @blog.update(blog)
         format.html { redirect_to @blog, notice: 'Blog was successfully updated.' }
         format.json { render :show, status: :ok, location: @blog }
